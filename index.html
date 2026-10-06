@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kochi Eats — Find your next great meal</title>
+<meta name="description" content="A curated food guide to Kochi, Kerala. Discover seafood, Kerala food, cafés and local favourites.">
+<style>
+:root{--ink:#171717;--muted:#6d6d6d;--paper:#fffaf3;--card:#fff;--line:#eadfce;--accent:#ff5a36;--dark:#1d2822}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;color:var(--ink);background:var(--paper)}
+header{max-width:1180px;margin:auto;padding:28px 22px 12px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:900;font-size:24px;letter-spacing:-1px}.logo span{color:var(--accent)}
+.badge{font-size:12px;background:#fff;border:1px solid var(--line);padding:9px 12px;border-radius:999px}
+.hero{max-width:1180px;margin:0 auto;padding:70px 22px 45px}
+.kicker{text-transform:uppercase;letter-spacing:2px;font-size:12px;font-weight:800;color:var(--accent)}
+h1{font-size:clamp(48px,8vw,88px);line-height:.92;letter-spacing:-5px;max-width:850px;margin:14px 0 22px}
+.hero p{font-size:19px;color:var(--muted);max-width:650px;line-height:1.6}
+.search{margin-top:30px;display:flex;gap:10px;max-width:720px}.search input{flex:1;padding:16px 18px;border:1px solid var(--line);border-radius:14px;font-size:16px;background:white}.search button,.surprise{border:0;border-radius:14px;padding:0 20px;background:var(--dark);color:white;font-weight:800;cursor:pointer}
+.wrap{max-width:1180px;margin:auto;padding:20px 22px 70px}
+.filters{display:flex;gap:9px;flex-wrap:wrap;margin:15px 0 30px}.filter{border:1px solid var(--line);background:white;border-radius:999px;padding:10px 15px;cursor:pointer}.filter.active{background:var(--dark);color:white}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;display:flex;flex-direction:column}
+.photo{height:150px;background:linear-gradient(135deg,#e7d7bd,#f6b07c);display:flex;align-items:end;padding:16px;font-weight:900;color:white;text-shadow:0 1px 4px #0005}
+.cardbody{padding:18px}.top{display:flex;justify-content:space-between;gap:12px}.name{font-size:21px;font-weight:850}.rating{font-weight:800;white-space:nowrap}.meta{color:var(--muted);font-size:13px;margin-top:5px}.desc{color:#4f4f4f;line-height:1.5;font-size:14px;margin:13px 0}.tags{display:flex;gap:6px;flex-wrap:wrap}.tag{font-size:11px;background:#f5eee5;padding:6px 8px;border-radius:8px}.actions{display:flex;gap:8px;margin-top:16px}.map{flex:1;text-align:center;text-decoration:none;color:white;background:var(--accent);padding:11px;border-radius:11px;font-weight:800;font-size:13px}
+.empty{text-align:center;padding:50px;color:var(--muted);display:none}
+footer{border-top:1px solid var(--line);padding:28px 22px;color:var(--muted);font-size:12px;text-align:center}
+@media(max-width:800px){.grid{grid-template-columns:1fr 1fr}h1{letter-spacing:-3px}.hero{padding-top:45px}}
+@media(max-width:560px){header{padding-top:18px}.badge{display:none}.grid{grid-template-columns:1fr}.search{flex-direction:column}.search button{height:50px}.hero p{font-size:16px}}
+</style>
+</head>
+<body>
+<header><div class="logo">Kochi<span>Eats</span></div><div class="badge">Independent food guide · Kochi, Kerala</div></header>
+<section class="hero">
+<div class="kicker">Eat Kochi differently</div>
+<h1>Where should we eat today?</h1>
+<p>A curated starting point for finding memorable food around Kochi — from Kerala seafood and Malabar classics to cafés and waterfront spots.</p>
+<div class="search"><input id="search" placeholder="Search restaurant, food, area…"><button class="surprise" onclick="surprise()">Surprise me</button></div>
+</section>
+<main class="wrap">
+<div class="filters" id="filters"></div>
+<div class="grid" id="grid"></div><div class="empty" id="empty">No spots found. Try another search or category.</div>
+</main>
+<footer>Built as a curated guide. Restaurant details can change — check the restaurant's current information before visiting.</footer>
+<script>
+const spots=[
+{name:"Fort Paragon Restaurant",area:"Fort Kochi",cat:"Kerala",rating:4.5,price:"₹₹",best:"Malabar flavours",desc:"A Fort Kochi stop for Kerala and Malabar-style dishes.",tags:["Kerala","Malabar","Lunch"],q:"Fort Paragon Restaurant Kochi"},
+{name:"Restaurant Chef Pillai Kochi",area:"Maradu",cat:"Kerala",rating:4.7,price:"₹₹₹",best:"Kerala dining",desc:"Chef-driven Kerala dining with a strong regional focus.",tags:["Kerala","Special occasion"],q:"Restaurant Chef Pillai Kochi"},
+{name:"Rice Boat",area:"Willingdon Island",cat:"Seafood",rating:4.6,price:"₹₹₹₹",best:"Seafood dinner",desc:"A destination-style seafood experience on the waterfront.",tags:["Seafood","Waterfront"],q:"Rice Boat Kochi"},
+{name:"Fort House Restaurant",area:"Fort Kochi",cat:"Seafood",rating:4.7,price:"₹₹₹",best:"Waterfront meal",desc:"A classic Fort Kochi setting for Kerala food and seafood.",tags:["Seafood","Waterfront"],q:"Fort House Restaurant Kochi"},
+{name:"Fusion Bay",area:"Fort Kochi",cat:"Seafood",rating:4.4,price:"₹₹",best:"Casual seafood",desc:"A relaxed Fort Kochi option with seafood and local flavours.",tags:["Seafood","Casual"],q:"Fusion Bay Fort Kochi"},
+{name:"Seagull",area:"Fort Kochi",cat:"Seafood",rating:4.3,price:"₹₹₹",best:"Sunset",desc:"A long-running waterfront choice around Calvathy Road.",tags:["Seafood","Waterfront","Sunset"],q:"Seagull Fort Kochi"},
+{name:"Kochi Kapital Kafe",area:"Fort Kochi",cat:"Café",rating:4.9,price:"₹₹",best:"Coffee & café food",desc:"A highly rated Fort Kochi café pick for a slower break.",tags:["Café","Coffee"],q:"Kochi Kapital Kafe"},
+{name:"Canvas Restaurant & Pizzeria",area:"Fort Kochi",cat:"Pizza",rating:4.9,price:"₹₹₹",best:"Pizza night",desc:"Wood-fired pizza and Italian-style food in Fort Kochi.",tags:["Pizza","Italian"],q:"Canvas Restaurant Pizzeria Kochi"},
+{name:"Maple Sea Food Restaurants",area:"Fort Kochi",cat:"Seafood",rating:4.5,price:"₹₹",best:"Seafood",desc:"A casual seafood option close to the Fort Kochi beach walkway.",tags:["Seafood","Casual"],q:"Maple Sea Food Restaurant Fort Kochi"},
+{name:"Riverside Grill",area:"Kadamakkudy",cat:"Seafood",rating:4.6,price:"₹₹₹",best:"Scenic meal",desc:"A scenic Kadamakkudy choice for seafood and a relaxed outing.",tags:["Seafood","Scenic","Kadamakkudy"],q:"Riverside Grill Kadamakkudy Kochi"},
+{name:"Karthiyayini Seafood Restaurant",area:"Maradu",cat:"Seafood",rating:4.1,price:"₹₹",best:"Local seafood",desc:"A long-running seafood option around Maradu.",tags:["Seafood","Local"],q:"Karthiyayini Seafood Restaurant Kochi"},
+{name:"Kerala Cafe Fort Kochi",area:"Fort Kochi",cat:"Kerala",rating:4.4,price:"₹₹",best:"Kerala classics",desc:"A straightforward Fort Kochi option for Kerala food.",tags:["Kerala","Casual"],q:"Kerala Cafe Fort Kochi"}
+];
+const cats=["All","Kerala","Seafood","Café","Pizza","Scenic"];
+let active="All";
+const filters=document.getElementById("filters");
+cats.forEach(c=>{let b=document.createElement("button");b.className="filter"+(c==="All"?" active":"");b.textContent=c;b.onclick=()=>{active=c;document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));b.classList.add("active");render()};filters.appendChild(b)});
+function render(){
+ const term=document.getElementById("search").value.toLowerCase();
+ const data=spots.filter(s=>(active==="All"||s.cat===active||s.tags.includes(active))&&(`${s.name} ${s.area} ${s.cat} ${s.best} ${s.tags.join(" ")}`.toLowerCase().includes(term)));
+ document.getElementById("grid").innerHTML=data.map(s=>`<article class="card"><div class="photo">${s.best}</div><div class="cardbody"><div class="top"><div><div class="name">${s.name}</div><div class="meta">${s.area} · ${s.price}</div></div><div class="rating">★ ${s.rating}</div></div><p class="desc">${s.desc}</p><div class="tags">${s.tags.map(t=>`<span class="tag">${t}</span>`).join("")}</div><div class="actions"><a class="map" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(s.q)}">Open in Maps ↗</a></div></div></article>`).join("");
+ document.getElementById("empty").style.display=data.length?"none":"block";
+}
+document.getElementById("search").addEventListener("input",render);
+function surprise(){const s=spots[Math.floor(Math.random()*spots.length)];document.getElementById("search").value=s.name;active="All";document.querySelectorAll(".filter").forEach(x=>x.classList.toggle("active",x.textContent==="All"));render();window.scrollTo({top:500,behavior:"smooth"})}
+render();
+</script>
+</body></html>
