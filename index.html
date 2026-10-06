@@ -1,73 +1,649 @@
+```html
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Kochi Eats — Find your next great meal</title>
-<meta name="description" content="A curated food guide to Kochi, Kerala. Discover seafood, Kerala food, cafés and local favourites.">
+<title>Jeeprekuka Eats — Kochi Food Guide</title>
+<meta name="description" content="Discover Jeeprekuka's top 10 food spots around Kochi. Find local favourites, must-try dishes and restaurant locations.">
+
 <style>
-:root{--ink:#171717;--muted:#6d6d6d;--paper:#fffaf3;--card:#fff;--line:#eadfce;--accent:#ff5a36;--dark:#1d2822}
-*{box-sizing:border-box}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;color:var(--ink);background:var(--paper)}
-header{max-width:1180px;margin:auto;padding:28px 22px 12px;display:flex;justify-content:space-between;align-items:center}
-.logo{font-weight:900;font-size:24px;letter-spacing:-1px}.logo span{color:var(--accent)}
-.badge{font-size:12px;background:#fff;border:1px solid var(--line);padding:9px 12px;border-radius:999px}
-.hero{max-width:1180px;margin:0 auto;padding:70px 22px 45px}
-.kicker{text-transform:uppercase;letter-spacing:2px;font-size:12px;font-weight:800;color:var(--accent)}
-h1{font-size:clamp(48px,8vw,88px);line-height:.92;letter-spacing:-5px;max-width:850px;margin:14px 0 22px}
-.hero p{font-size:19px;color:var(--muted);max-width:650px;line-height:1.6}
-.search{margin-top:30px;display:flex;gap:10px;max-width:720px}.search input{flex:1;padding:16px 18px;border:1px solid var(--line);border-radius:14px;font-size:16px;background:white}.search button,.surprise{border:0;border-radius:14px;padding:0 20px;background:var(--dark);color:white;font-weight:800;cursor:pointer}
-.wrap{max-width:1180px;margin:auto;padding:20px 22px 70px}
-.filters{display:flex;gap:9px;flex-wrap:wrap;margin:15px 0 30px}.filter{border:1px solid var(--line);background:white;border-radius:999px;padding:10px 15px;cursor:pointer}.filter.active{background:var(--dark);color:white}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;display:flex;flex-direction:column}
-.photo{height:150px;background:linear-gradient(135deg,#e7d7bd,#f6b07c);display:flex;align-items:end;padding:16px;font-weight:900;color:white;text-shadow:0 1px 4px #0005}
-.cardbody{padding:18px}.top{display:flex;justify-content:space-between;gap:12px}.name{font-size:21px;font-weight:850}.rating{font-weight:800;white-space:nowrap}.meta{color:var(--muted);font-size:13px;margin-top:5px}.desc{color:#4f4f4f;line-height:1.5;font-size:14px;margin:13px 0}.tags{display:flex;gap:6px;flex-wrap:wrap}.tag{font-size:11px;background:#f5eee5;padding:6px 8px;border-radius:8px}.actions{display:flex;gap:8px;margin-top:16px}.map{flex:1;text-align:center;text-decoration:none;color:white;background:var(--accent);padding:11px;border-radius:11px;font-weight:800;font-size:13px}
-.empty{text-align:center;padding:50px;color:var(--muted);display:none}
-footer{border-top:1px solid var(--line);padding:28px 22px;color:var(--muted);font-size:12px;text-align:center}
-@media(max-width:800px){.grid{grid-template-columns:1fr 1fr}h1{letter-spacing:-3px}.hero{padding-top:45px}}
-@media(max-width:560px){header{padding-top:18px}.badge{display:none}.grid{grid-template-columns:1fr}.search{flex-direction:column}.search button{height:50px}.hero p{font-size:16px}}
+:root {
+  --ink:#171717;
+  --muted:#6d6d6d;
+  --paper:#fffaf3;
+  --card:#fff;
+  --line:#eadfce;
+  --accent:#ff5a36;
+  --dark:#1d2822;
+}
+
+* { box-sizing:border-box; }
+
+body {
+  margin:0;
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,
+  BlinkMacSystemFont,"Segoe UI",sans-serif;
+  color:var(--ink);
+  background:var(--paper);
+}
+
+header {
+  max-width:1180px;
+  margin:auto;
+  padding:28px 22px 12px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo {
+  font-weight:900;
+  font-size:24px;
+  letter-spacing:-1px;
+}
+
+.logo span { color:var(--accent); }
+
+.badge {
+  font-size:12px;
+  background:#fff;
+  border:1px solid var(--line);
+  padding:9px 12px;
+  border-radius:999px;
+}
+
+.hero {
+  max-width:1180px;
+  margin:0 auto;
+  padding:70px 22px 45px;
+}
+
+.kicker {
+  text-transform:uppercase;
+  letter-spacing:2px;
+  font-size:12px;
+  font-weight:800;
+  color:var(--accent);
+}
+
+h1 {
+  font-size:clamp(48px,8vw,88px);
+  line-height:.92;
+  letter-spacing:-5px;
+  max-width:900px;
+  margin:14px 0 22px;
+}
+
+.hero p {
+  font-size:19px;
+  color:var(--muted);
+  max-width:650px;
+  line-height:1.6;
+}
+
+.search {
+  margin-top:30px;
+  display:flex;
+  gap:10px;
+  max-width:720px;
+}
+
+.search input {
+  flex:1;
+  min-width:0;
+  padding:16px 18px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  font-size:16px;
+  background:white;
+}
+
+.search button,
+.surprise {
+  border:0;
+  border-radius:14px;
+  padding:0 20px;
+  background:var(--dark);
+  color:white;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.wrap {
+  max-width:1180px;
+  margin:auto;
+  padding:20px 22px 70px;
+}
+
+.section-heading {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-bottom:8px;
+}
+
+.section-heading h2 {
+  font-size:25px;
+  letter-spacing:-1px;
+  margin:0;
+}
+
+.spot-count {
+  font-size:13px;
+  color:var(--muted);
+}
+
+.filters {
+  display:flex;
+  gap:9px;
+  flex-wrap:wrap;
+  margin:20px 0 30px;
+}
+
+.filter {
+  border:1px solid var(--line);
+  background:white;
+  border-radius:999px;
+  padding:10px 15px;
+  cursor:pointer;
+  font:inherit;
+  font-size:13px;
+}
+
+.filter.active {
+  background:var(--dark);
+  color:white;
+}
+
+.grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
+}
+
+.card {
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:22px;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  min-width:0;
+  transition:transform .2s,box-shadow .2s;
+}
+
+.card:hover {
+  transform:translateY(-3px);
+  box-shadow:0 12px 30px #3b2a1710;
+}
+
+.photo {
+  height:170px;
+  position:relative;
+  display:flex;
+  align-items:flex-end;
+  padding:16px;
+  color:white;
+  background:linear-gradient(135deg,#d9a16e,#78442d);
+}
+
+.photo::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(0deg,#17171799,transparent 75%);
+}
+
+.photo-label {
+  position:relative;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+}
+
+.cardbody {
+  padding:18px;
+  display:flex;
+  flex-direction:column;
+  flex:1;
+}
+
+.top {
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.name {
+  font-size:20px;
+  font-weight:850;
+  line-height:1.2;
+}
+
+.meta {
+  color:var(--muted);
+  font-size:13px;
+  margin-top:7px;
+}
+
+.must-try {
+  margin-top:17px;
+  padding:13px;
+  border-radius:13px;
+  background:#fff3e8;
+}
+
+.must-try-label {
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:1.3px;
+  font-weight:900;
+  color:var(--accent);
+  margin-bottom:5px;
+}
+
+.dish {
+  font-size:16px;
+  font-weight:850;
+  line-height:1.4;
+}
+
+.desc {
+  color:#555;
+  line-height:1.55;
+  font-size:14px;
+  margin:13px 0;
+}
+
+.tags {
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+  margin-top:auto;
+}
+
+.tag {
+  font-size:11px;
+  background:#f5eee5;
+  padding:6px 8px;
+  border-radius:8px;
+}
+
+.actions {
+  display:flex;
+  gap:8px;
+  margin-top:17px;
+}
+
+.map {
+  flex:1;
+  text-align:center;
+  text-decoration:none;
+  color:white;
+  background:var(--accent);
+  padding:12px 10px;
+  border-radius:11px;
+  font-weight:800;
+  font-size:13px;
+}
+
+.map:hover { background:#e94a29; }
+
+.empty {
+  text-align:center;
+  padding:50px 15px;
+  color:var(--muted);
+  display:none;
+}
+
+footer {
+  border-top:1px solid var(--line);
+  padding:28px 22px;
+  color:var(--muted);
+  font-size:12px;
+  text-align:center;
+  line-height:1.7;
+}
+
+@media(max-width:800px) {
+  .grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  h1 { letter-spacing:-3px; }
+  .hero { padding-top:45px; }
+}
+
+@media(max-width:560px) {
+  header { padding-top:18px; }
+  .badge { display:none; }
+  .grid { grid-template-columns:1fr; }
+  .search { flex-direction:column; }
+  .search button { height:50px; }
+  .hero p { font-size:16px; }
+  h1 { font-size:52px; }
+  .section-heading h2 { font-size:22px; }
+}
 </style>
 </head>
+
 <body>
-<header><div class="logo">Kochi<span>Eats</span></div><div class="badge">Independent food guide · Kochi, Kerala</div></header>
+
+<header>
+  <div class="logo">Jeeprekuka<span>Eats</span></div>
+  <div class="badge">Local food guide · Kochi, Kerala</div>
+</header>
+
 <section class="hero">
-<div class="kicker">Eat Kochi differently</div>
-<h1>Jeeprekuka's top food spots :)</h1>
-<p>A curated starting point for finding memorable food around Kochi — from Kerala seafood and Malabar classics to cafés and waterfront spots.</p>
-<div class="search"><input id="search" placeholder="Search restaurant, food, area…"><button class="surprise" onclick="surprise()">Surprise me</button></div>
+  <div class="kicker">Good food. No confusion.</div>
+
+  <h1>Jeeprekuka's top food spots :)</h1>
+
+  <p>
+    From legendary porotta and beef roast to smoky shawarma,
+    proper biriyani and juicy burgers — here's your shortlist
+    of Kochi food spots and exactly what to order.
+  </p>
+
+  <div class="search">
+    <input
+      id="search"
+      type="search"
+      placeholder="Search restaurant, dish, area…"
+      aria-label="Search restaurants, dishes and locations"
+    >
+    <button class="surprise" id="surpriseBtn" type="button">
+      Surprise me ↗
+    </button>
+  </div>
 </section>
+
 <main class="wrap">
-<div class="filters" id="filters"></div>
-<div class="grid" id="grid"></div><div class="empty" id="empty">No spots found. Try another search or category.</div>
+  <div class="section-heading">
+    <h2>The food hit list</h2>
+    <span class="spot-count" id="spotCount">10 spots</span>
+  </div>
+
+  <div class="filters" id="filters" aria-label="Filter restaurants"></div>
+
+  <div class="grid" id="grid"></div>
+
+  <div class="empty" id="empty">
+    No spots found. Try another dish, area or category.
+  </div>
 </main>
-<footer>Built as a curated guide. Restaurant details can change — check the restaurant's current information before visiting.</footer>
+
+<footer>
+  <strong>Jeeprekuka Eats</strong> · A personal shortlist of Kochi food favourites.
+  <br>
+  Restaurant details and menus may change. Check current details before visiting.
+</footer>
+
 <script>
-const spots=[
-{name:"Fort Paragon Restaurant",area:"Fort Kochi",cat:"Kerala",rating:4.5,price:"₹₹",best:"Malabar flavours",desc:"A Fort Kochi stop for Kerala and Malabar-style dishes.",tags:["Kerala","Malabar","Lunch"],q:"Fort Paragon Restaurant Kochi"},
-{name:"Restaurant Chef Pillai Kochi",area:"Maradu",cat:"Kerala",rating:4.7,price:"₹₹₹",best:"Kerala dining",desc:"Chef-driven Kerala dining with a strong regional focus.",tags:["Kerala","Special occasion"],q:"Restaurant Chef Pillai Kochi"},
-{name:"Rice Boat",area:"Willingdon Island",cat:"Seafood",rating:4.6,price:"₹₹₹₹",best:"Seafood dinner",desc:"A destination-style seafood experience on the waterfront.",tags:["Seafood","Waterfront"],q:"Rice Boat Kochi"},
-{name:"Fort House Restaurant",area:"Fort Kochi",cat:"Seafood",rating:4.7,price:"₹₹₹",best:"Waterfront meal",desc:"A classic Fort Kochi setting for Kerala food and seafood.",tags:["Seafood","Waterfront"],q:"Fort House Restaurant Kochi"},
-{name:"Fusion Bay",area:"Fort Kochi",cat:"Seafood",rating:4.4,price:"₹₹",best:"Casual seafood",desc:"A relaxed Fort Kochi option with seafood and local flavours.",tags:["Seafood","Casual"],q:"Fusion Bay Fort Kochi"},
-{name:"Seagull",area:"Fort Kochi",cat:"Seafood",rating:4.3,price:"₹₹₹",best:"Sunset",desc:"A long-running waterfront choice around Calvathy Road.",tags:["Seafood","Waterfront","Sunset"],q:"Seagull Fort Kochi"},
-{name:"Kochi Kapital Kafe",area:"Fort Kochi",cat:"Café",rating:4.9,price:"₹₹",best:"Coffee & café food",desc:"A highly rated Fort Kochi café pick for a slower break.",tags:["Café","Coffee"],q:"Kochi Kapital Kafe"},
-{name:"Canvas Restaurant & Pizzeria",area:"Fort Kochi",cat:"Pizza",rating:4.9,price:"₹₹₹",best:"Pizza night",desc:"Wood-fired pizza and Italian-style food in Fort Kochi.",tags:["Pizza","Italian"],q:"Canvas Restaurant Pizzeria Kochi"},
-{name:"Maple Sea Food Restaurants",area:"Fort Kochi",cat:"Seafood",rating:4.5,price:"₹₹",best:"Seafood",desc:"A casual seafood option close to the Fort Kochi beach walkway.",tags:["Seafood","Casual"],q:"Maple Sea Food Restaurant Fort Kochi"},
-{name:"Riverside Grill",area:"Kadamakkudy",cat:"Seafood",rating:4.6,price:"₹₹₹",best:"Scenic meal",desc:"A scenic Kadamakkudy choice for seafood and a relaxed outing.",tags:["Seafood","Scenic","Kadamakkudy"],q:"Riverside Grill Kadamakkudy Kochi"},
-{name:"Karthiyayini Seafood Restaurant",area:"Maradu",cat:"Seafood",rating:4.1,price:"₹₹",best:"Local seafood",desc:"A long-running seafood option around Maradu.",tags:["Seafood","Local"],q:"Karthiyayini Seafood Restaurant Kochi"},
-{name:"Kerala Cafe Fort Kochi",area:"Fort Kochi",cat:"Kerala",rating:4.4,price:"₹₹",best:"Kerala classics",desc:"A straightforward Fort Kochi option for Kerala food.",tags:["Kerala","Casual"],q:"Kerala Cafe Fort Kochi"}
+const spots = [
+  {
+    name: "Bachikka Restaurant",
+    area: "Padivattom",
+    cat: "Kerala",
+    best: "Neypathal & Beef Stew",
+    desc: "A Kerala-style combination worth trying. Go for the neypathal with beef stew.",
+    tags: ["Kerala", "Beef", "Must try"],
+    q: "Bachikka Restaurant Padivattom Kochi",
+    color: "linear-gradient(135deg,#b78b54,#75442b)"
+  },
+  {
+    name: "Hotel Zain",
+    area: "Kakkanad",
+    cat: "Beef",
+    best: "Porotta & Beef Roast",
+    desc: "The game changer on this list. Flaky porotta paired with flavour-packed beef roast.",
+    tags: ["Beef", "Porotta", "Fan favourite"],
+    q: "Hotel Zain Kakkanad Kochi",
+    color: "linear-gradient(135deg,#a44f31,#52291f)"
+  },
+  {
+    name: "Taste of Punjab",
+    area: "Thevara",
+    cat: "Grill",
+    best: "Tandoori Chicken & Hariyali Tikka",
+    desc: "A double pick for grilled-food lovers: smoky tandoori chicken and herby hariyali tikka.",
+    tags: ["Tandoori", "Chicken", "Grill"],
+    q: "Taste of Punjab Thevara Kochi",
+    color: "linear-gradient(135deg,#c77b46,#84352c)"
+  },
+  {
+    name: "Galaxy Restaurant",
+    area: "Padamugal",
+    cat: "Kerala",
+    best: "Chapathi & Egg Curry",
+    desc: "Keep it simple with soft chapathi and a comforting egg curry.",
+    tags: ["Egg", "Curry", "Comfort food"],
+    q: "Galaxy Restaurant Padamugal Kochi",
+    color: "linear-gradient(135deg,#d5a15c,#8b5a2b)"
+  },
+  {
+    name: "Hotel Alakapuri",
+    area: "Kakkanad",
+    cat: "Vegetarian",
+    best: "Masala Dosa",
+    desc: "A classic South Indian pick for when a crisp dosa and masala filling hit the spot.",
+    tags: ["Dosa", "South Indian", "Vegetarian"],
+    q: "Hotel Alakapuri Kakkanad Kochi",
+    color: "linear-gradient(135deg,#d6a34b,#9c652d)"
+  },
+  {
+    name: "Biriyani Store",
+    area: "Kaloor",
+    cat: "Biriyani",
+    best: "Beef Biriyani",
+    desc: "A dedicated stop on your list for a satisfying plate of beef biriyani.",
+    tags: ["Biriyani", "Beef", "Rice"],
+    q: "Biriyani Store Kaloor Kochi",
+    color: "linear-gradient(135deg,#c28a42,#754128)"
+  },
+  {
+    name: "Smoke Culture by Steve",
+    area: "Edappally",
+    cat: "Burgers",
+    best: "Beef Sandwich",
+    desc: "Switch things up with a beef sandwich for a smoky, savoury bite.",
+    tags: ["Beef", "Sandwich", "Quick bite"],
+    q: "Smoke Culture by Steve Edappally Kochi",
+    color: "linear-gradient(135deg,#805044,#342b28)"
+  },
+  {
+    name: "The Burgery In",
+    area: "Edachira",
+    cat: "Burgers",
+    best: "Classic Beef Burger",
+    desc: "A straightforward burger pick. Order the classic beef burger.",
+    tags: ["Burger", "Beef", "Fast food"],
+    q: "The Burgery In Edachira Kochi",
+    color: "linear-gradient(135deg,#c47b45,#713b2c)"
+  },
+  {
+    name: "Makhdum Mandi",
+    area: "Padamugal",
+    cat: "Mandi",
+    best: "Alfahm Mandi",
+    desc: "A mandi pick featuring alfahm-style grilled chicken served with rice.",
+    tags: ["Mandi", "Alfahm", "Grilled chicken"],
+    q: "Makhdum Mandi Padamugal Kochi",
+    color: "linear-gradient(135deg,#b87b42,#60402d)"
+  },
+  {
+    name: "Tamaki",
+    area: "Pipeline",
+    cat: "Shawarma",
+    best: "Masala Shawarma & Ceylon Porotta",
+    desc: "A bold combination for your next food run: masala shawarma and Ceylon porotta.",
+    tags: ["Shawarma", "Porotta", "Must try"],
+    q: "Tamaki Pipeline Kochi",
+    color: "linear-gradient(135deg,#bd6740,#63342d)"
+  }
 ];
-const cats=["All","Kerala","Seafood","Café","Pizza","Scenic"];
-let active="All";
-const filters=document.getElementById("filters");
-cats.forEach(c=>{let b=document.createElement("button");b.className="filter"+(c==="All"?" active":"");b.textContent=c;b.onclick=()=>{active=c;document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));b.classList.add("active");render()};filters.appendChild(b)});
-function render(){
- const term=document.getElementById("search").value.toLowerCase();
- const data=spots.filter(s=>(active==="All"||s.cat===active||s.tags.includes(active))&&(`${s.name} ${s.area} ${s.cat} ${s.best} ${s.tags.join(" ")}`.toLowerCase().includes(term)));
- document.getElementById("grid").innerHTML=data.map(s=>`<article class="card"><div class="photo">${s.best}</div><div class="cardbody"><div class="top"><div><div class="name">${s.name}</div><div class="meta">${s.area} · ${s.price}</div></div><div class="rating">★ ${s.rating}</div></div><p class="desc">${s.desc}</p><div class="tags">${s.tags.map(t=>`<span class="tag">${t}</span>`).join("")}</div><div class="actions"><a class="map" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(s.q)}">Open in Maps ↗</a></div></div></article>`).join("");
- document.getElementById("empty").style.display=data.length?"none":"block";
+
+const categories = [
+  "All",
+  "Kerala",
+  "Beef",
+  "Grill",
+  "Vegetarian",
+  "Biriyani",
+  "Burgers",
+  "Mandi",
+  "Shawarma"
+];
+
+let active = "All";
+
+const filters = document.getElementById("filters");
+const grid = document.getElementById("grid");
+const search = document.getElementById("search");
+const empty = document.getElementById("empty");
+const spotCount = document.getElementById("spotCount");
+
+categories.forEach(category => {
+  const button = document.createElement("button");
+
+  button.type = "button";
+  button.className = "filter" + (category === "All" ? " active" : "");
+  button.textContent = category;
+  button.setAttribute(
+    "aria-pressed",
+    category === "All" ? "true" : "false"
+  );
+
+  button.addEventListener("click", () => {
+    active = category;
+
+    document.querySelectorAll(".filter").forEach(item => {
+      const selected = item.textContent === active;
+      item.classList.toggle("active", selected);
+      item.setAttribute("aria-pressed", String(selected));
+    });
+
+    render();
+  });
+
+  filters.appendChild(button);
+});
+
+function render() {
+  const term = search.value.trim().toLowerCase();
+
+  const data = spots.filter(spot => {
+    const matchesCategory =
+      active === "All" ||
+      spot.cat === active ||
+      spot.tags.includes(active);
+
+    const searchable = [
+      spot.name,
+      spot.area,
+      spot.cat,
+      spot.best,
+      spot.desc,
+      ...spot.tags
+    ].join(" ").toLowerCase();
+
+    return matchesCategory && searchable.includes(term);
+  });
+
+  grid.innerHTML = data.map(spot => {
+    const mapUrl =
+      "https://www.google.com/maps/search/?api=1&query=" +
+      encodeURIComponent(spot.q);
+
+    return `
+      <article class="card">
+        <div
+          class="photo"
+          style="background:${spot.color}"
+          aria-label="${spot.best}"
+        >
+          <span class="photo-label">Jeeprekuka recommends</span>
+        </div>
+
+        <div class="cardbody">
+          <div class="top">
+            <div>
+              <div class="name">${spot.name}</div>
+              <div class="meta">${spot.area} · ${spot.cat}</div>
+            </div>
+          </div>
+
+          <div class="must-try">
+            <div class="must-try-label">What to order</div>
+            <div class="dish">${spot.best}</div>
+          </div>
+
+          <p class="desc">${spot.desc}</p>
+
+          <div class="tags">
+            ${spot.tags.map(tag =>
+              `<span class="tag">${tag}</span>`
+            ).join("")}
+          </div>
+
+          <div class="actions">
+            <a
+              class="map"
+              target="_blank"
+              rel="noopener noreferrer"
+              href="${mapUrl}"
+            >Find on Google Maps ↗</a>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join("");
+
+  empty.style.display = data.length ? "none" : "block";
+
+  spotCount.textContent =
+    `${data.length} ${data.length === 1 ? "spot" : "spots"}`;
 }
-document.getElementById("search").addEventListener("input",render);
-function surprise(){const s=spots[Math.floor(Math.random()*spots.length)];document.getElementById("search").value=s.name;active="All";document.querySelectorAll(".filter").forEach(x=>x.classList.toggle("active",x.textContent==="All"));render();window.scrollTo({top:500,behavior:"smooth"})}
+
+search.addEventListener("input", render);
+
+document.getElementById("surpriseBtn").addEventListener("click", () => {
+  const spot = spots[Math.floor(Math.random() * spots.length)];
+
+  search.value = "";
+  active = "All";
+
+  document.querySelectorAll(".filter").forEach(button => {
+    const selected = button.textContent === "All";
+    button.classList.toggle("active", selected);
+    button.setAttribute("aria-pressed", String(selected));
+  });
+
+  render();
+
+  const cards = [...grid.querySelectorAll(".card")];
+  const selectedCard = cards[spots.indexOf(spot)];
+
+  if (selectedCard) {
+    selectedCard.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+
+    selectedCard.animate(
+      [
+        { transform: "scale(1)" },
+        { transform: "scale(1.025)" },
+        { transform: "scale(1)" }
+      ],
+      { duration: 500 }
+    );
+  }
+});
+
 render();
 </script>
-</body></html>
+
+</body>
+</html>
+```
